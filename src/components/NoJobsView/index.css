@@ -1,0 +1,9 @@
+.no-jobs-view {
+  text-align: center;
+  padding: 40px;
+}
+
+.no-jobs-view img {
+  width: 300px;
+  margin-bottom: 16px;
+}

@@ -1,0 +1,31 @@
+.similar-job-card {
+  border-radius: 10px;
+  background-color: #242424;
+  padding: 16px;
+  list-style: none;
+  width: 100%;
+  font-size: 0.95rem;
+}
+
+.similar-job-card img {
+  width: 50px;
+}
+
+/* Tablet and up: cards take 48% width (2 per row) */
+@media (min-width: 768px) {
+  .similar-job-card {
+    width: 48%;
+    font-size: 1rem;
+  }
+}
+
+/* Desktop: cards take 30% width (3 per row) */
+@media (min-width: 1200px) {
+  .similar-job-card {
+    width: 30%;
+    font-size: 1.05rem;
+  }
+}
+.similar-job-card img {
+  width: 50px;
+}

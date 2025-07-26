@@ -1,0 +1,35 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #272727;
+  padding: 16px;
+}
+
+.header img {
+  height: 40px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+}
+
+.nav-links a{
+  color: #ffffff;
+  text-decoration: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+.nav-links button {
+  color: #ffffff;
+  text-decoration: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-weight: 500;
+  padding: 0%;
+}

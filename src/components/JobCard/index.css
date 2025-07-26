@@ -1,0 +1,36 @@
+.job-card {
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  margin: 16px 0;
+  padding: 16px;
+  list-style: none;
+}
+
+.job-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.job-card-header {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.job-card-header div{
+    display: flex;
+    gap: 24px;
+}
+.job-card-header div p {
+
+  margin-top: 30px;
+}
+.job-card-header img {
+  width: 50px;
+}
+
+.job-card-body {
+  display: flex;
+  gap: 16px;
+  margin: 8px 0;
+}
