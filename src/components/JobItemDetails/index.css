@@ -1,25 +1,25 @@
 .job-details-container {
-  padding: 3% 5% 0 5%;  /* Smaller horizontal padding for all screens */
-  background-color: black;
+  padding: 3% 5% 0 5%;
+  background-color: #ffffff;
 }
 
 @media (min-width: 768px) {
   .job-details-container {
-    padding: 3% 10% 0 10%;  /* More padding on tablets */
+    padding: 3% 10% 0 10%;
   }
 }
 
 @media (min-width: 1200px) {
   .job-details-container {
-    padding: 3% 20% 0 20%;  /* Restore original padding on large screens */
+    padding: 3% 20% 0 20%;
   }
 }
 
-
-.job-details-card{
-   background-color: #242424;
+.job-details-card {
+  background-color: #ffffff;
   padding: 5%;
   border-radius: 10px;
+  border: 1px solid #e2e8f0;
 }
 
 .job-details-card img {
@@ -33,7 +33,6 @@
   padding: 0;
   margin: 0;
   list-style: none;
-  justify-content: center;
 }
 
 .job-details-card li {

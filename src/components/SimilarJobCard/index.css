@@ -1,6 +1,7 @@
 .similar-job-card {
   border-radius: 10px;
-  background-color: #242424;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
   padding: 16px;
   list-style: none;
   width: 100%;
@@ -11,21 +12,18 @@
   width: 50px;
 }
 
-/* Tablet and up: cards take 48% width (2 per row) */
+/* Tablet and up */
 @media (min-width: 768px) {
   .similar-job-card {
-    width: 48%;
+    width: 38%;
     font-size: 1rem;
   }
 }
 
-/* Desktop: cards take 30% width (3 per row) */
+/* Desktop */
 @media (min-width: 1200px) {
   .similar-job-card {
-    width: 30%;
+    width: 28%;
     font-size: 1.05rem;
   }
-}
-.similar-job-card img {
-  width: 50px;
 }

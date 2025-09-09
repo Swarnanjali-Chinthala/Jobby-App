@@ -1,5 +1,5 @@
 .home-container {
-  background-color: #f8fafc;
+  background-color: #ffffff;
   min-height: calc(100vh - 60px);
   display: flex;
   flex-direction: column;
@@ -11,7 +11,7 @@
 
 .home-container h1 {
   font-size: 32px;
-  color: #272727;
+  color: #1e293b;
 }
 
 .home-container p {
@@ -26,5 +26,5 @@
   border: none;
   padding: 10px 20px;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 6px;
 }

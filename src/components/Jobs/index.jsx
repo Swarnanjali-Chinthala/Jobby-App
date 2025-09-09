@@ -31,14 +31,10 @@ const Jobs = () => {
   const [employmentType, setEmploymentType] = useState([])
   const [salaryRange, setSalaryRange] = useState('')
 
-  // Fetch Profile only once
   const getProfile = async () => {
     const jwtToken = Cookies.get('jwt_token')
     const url = 'https://apis.ccbp.in/profile'
-    const options = {
-      headers: { Authorization: `Bearer ${jwtToken}` },
-      method: 'GET',
-    }
+    const options = { headers: { Authorization: `Bearer ${jwtToken}` } }
     const response = await fetch(url, options)
     if (response.ok) {
       const data = await response.json()
@@ -54,10 +50,7 @@ const Jobs = () => {
     const jwtToken = Cookies.get('jwt_token')
     const employmentTypeQuery = employmentType.join(',')
     const url = `https://apis.ccbp.in/jobs?employment_type=${employmentTypeQuery}&minimum_package=${salaryRange}&search=${search}`
-    const options = {
-      headers: { Authorization: `Bearer ${jwtToken}` },
-      method: 'GET',
-    }
+    const options = { headers: { Authorization: `Bearer ${jwtToken}` } }
     const response = await fetch(url, options)
     if (response.ok) {
       const data = await response.json()
@@ -68,80 +61,62 @@ const Jobs = () => {
     setLoading(false)
   }
 
-  // Get profile on mount
-  useEffect(() => {
-    getProfile()
-  }, [])
-
-  // Re-fetch jobs every time filters change
-  useEffect(() => {
-    getJobs()
-    // eslint-disable-next-line
-  }, [employmentType, salaryRange, search])
+  useEffect(() => { getProfile() }, [])
+  useEffect(() => { getJobs() }, [employmentType, salaryRange, search])
 
   const toggleEmploymentType = id => {
-    if (employmentType.includes(id)) {
-      setEmploymentType(employmentType.filter(each => each !== id))
-    } else {
-      setEmploymentType([...employmentType, id])
-    }
+    setEmploymentType(prev =>
+      prev.includes(id) ? prev.filter(each => each !== id) : [...prev, id]
+    )
   }
 
-  const onSalaryChange = id => {
-    setSalaryRange(id)
-  }
-
+  const onSalaryChange = id => setSalaryRange(id)
   const onSearchInput = e => setSearchInput(e.target.value)
-
-  const onSearchClick = () => {
-    setSearch(searchInput)
-  }
-
-  const onRetry = () => {
-    getProfile()
-    getJobs()
-  }
+  const onSearchClick = () => setSearch(searchInput)
+  const onRetry = () => { getProfile(); getJobs() }
 
   return (
     <>
       <Header />
       <div className="jobs-container">
-        <div>
-        <div className="profile-section">
-          <img src={profile.profile_image_url} alt="profile" className="userProfile" />
-          <h2>{profile.name}</h2>
-          <p>{profile.short_bio}</p>
-        </div>
+        {/* LEFT SIDEBAR */}
+        <aside className="sidebar">
+          <div className="profile-section">
+            <img src={profile.profile_image_url} alt="profile" className="userProfile" />
+            <h2>{profile.name}</h2>
+            <p>{profile.short_bio}</p>
+          </div>
 
-        <div className="filters-section">
-          <h4>Employment Type</h4>
-          {employmentTypesList.map(item => (
-            <div key={item.employmentTypeId}>
-              <input
-                type="checkbox"
-                checked={employmentType.includes(item.employmentTypeId)}
-                onChange={() => toggleEmploymentType(item.employmentTypeId)}
-              />
-              <label>{item.label}</label>
-            </div>
-          ))}
+          <div className="filters-section">
+            <h4>Employment Type</h4>
+            {employmentTypesList.map(item => (
+              <div key={item.employmentTypeId}>
+                <input
+                  type="checkbox"
+                  checked={employmentType.includes(item.employmentTypeId)}
+                  onChange={() => toggleEmploymentType(item.employmentTypeId)}
+                />
+                <label>{item.label}</label>
+              </div>
+            ))}
 
-          <h4>Salary Range</h4>
-          {salaryRangesList.map(item => (
-            <div key={item.salaryRangeId}>
-              <input
-                type="radio"
-                checked={salaryRange === item.salaryRangeId}
-                onChange={() => onSalaryChange(item.salaryRangeId)}
-                name="salary"
-              />
-              <label>{item.label}</label>
-            </div>
-          ))}
-        </div>
-        </div>
+            <h4>Salary Range</h4>
+            {salaryRangesList.map(item => (
+              <div key={item.salaryRangeId}>
+                <input
+                  type="radio"
+                  checked={salaryRange === item.salaryRangeId}
+                  onChange={() => onSalaryChange(item.salaryRangeId)}
+                  name="salary"
+                />
+                <label>{item.label}</label>
+              </div>
+            ))}
+          </div>
+        </aside>
 
-        <div className="jobs-list-section">
+        {/* RIGHT CONTENT */}
+        <section className="jobs-list-section">
           <div className="search-bar">
             <input
               type="search"
@@ -149,12 +124,8 @@ const Jobs = () => {
               onChange={onSearchInput}
               placeholder="Search Jobs"
             />
-            <button
-              type="button"
-              data-testid="searchButton"
-              onClick={onSearchClick}
-            >
-              <img src="https://assets.ccbp.in/frontend/react-js/password-manager-search-img.png"  />
+            <button type="button" data-testid="searchButton" onClick={onSearchClick}>
+              <img src="https://assets.ccbp.in/frontend/react-js/password-manager-search-img.png" alt="search" />
             </button>
           </div>
 
@@ -166,12 +137,10 @@ const Jobs = () => {
             <NoJobsView />
           ) : (
             <ul className="jobs-list">
-              {jobs.map(job => (
-                <JobCard key={job.id} job={job} />
-              ))}
+              {jobs.map(job => <JobCard key={job.id} job={job} />)}
             </ul>
           )}
-        </div>
+        </section>
       </div>
     </>
   )
